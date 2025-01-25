@@ -113,7 +113,7 @@ jobs:
         fi
         # Check if dtb.img exists, then rename and copy it to AnyKernel3 folder
         if [ -e "dtb.img" ]; then
-          mv -f dtb.img AnyKernel3/dtb
+          cp -f dtb.img AnyKernel3/dtb
         fi
         # Check if dtbo.img exists, then copy it to AnyKernel3 folder
         if [ -e "dtbo.img" ]; then
@@ -142,7 +142,7 @@ jobs:
         fi
         # Check if dtb.img exists, then rename and copy it to SecondAnyKernel folder
         if [ -e "dtb.img" ]; then
-          mv -f dtb.img SecondAnyKernel/dtb
+          cp -f dtb.img SecondAnyKernel/dtb
         fi
         second_name=Tensa-Zangetsu-HYPER-KSUnxt-${{ github.event.inputs.CODENAME }}.zip
         cd SecondAnyKernel
