@@ -86,7 +86,7 @@ jobs:
     - name: Building kernel
       run: |
         rm -rf KernelSU-Next
-        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next
+        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s 1.0.4
         export ARCH=arm64
         export SUBARCH=ARM64
         export KBUILD_BUILD_USER="aliza"
