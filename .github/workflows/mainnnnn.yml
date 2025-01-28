@@ -15,7 +15,7 @@ on:
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
         required: true
-        default: 'susfs-next'
+        default: 'ksu-next'
       CODENAME:
         description: 'Phone Codename'
         default: 'munch'
