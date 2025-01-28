@@ -14,7 +14,7 @@ on:
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
         required: true
-        default: 'munch'
+        default: 'ksu-1.0.4'
       CODENAME:
         description: 'Phone Codename'
         default: 'munch'
