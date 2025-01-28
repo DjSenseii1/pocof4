@@ -1,4 +1,4 @@
-name: Kernel Build (munch) - KSUNEXTTEST
+name: Kernel Build (munch) - KSUNEXT 
 
 on:
   pull_request:
@@ -87,7 +87,7 @@ jobs:
     - name: Building kernel
       run: |
         rm -rf KernelSU-Next
-        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash
+        curl -sL https://raw.githubusercontent.com/galaxybuild-project/tools/refs/heads/main/Scripts/KernelSU-SuSFS.sh | bash
         export ARCH=arm64
         export SUBARCH=ARM64
         export KBUILD_BUILD_USER="aliza"
