@@ -1,4 +1,4 @@
-name: Kernel Build (munch) - KSUNEXT 
+name: Kernel Build (nolag) - KSUNEXT 
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ on:
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
         required: true
-        default: 'ksu-v1.0.4'
+        default: 'nolag'
       CODENAME:
         description: 'Phone Codename'
         default: 'munch'
@@ -25,7 +25,7 @@ on:
         required: false
       ANYKERNEL_BRANCH:
         description: 'AnyKernel Branch (defaults to codename)'
-        default: 'main'
+        default: 'nolag'
         required: false
       SECOND_ANYKERNEL_URL:
         description: 'secound AnyKernel Url (leave blank if you dont want AnyKernel)'
@@ -33,7 +33,7 @@ on:
         required: false
       SECOND_ANYKERNEL_BRANCH:
         description: 'Second AnyKernel Branch (defaults to codename)'
-        default: 'main'
+        default: 'nolag'
         required: false
       UPLOAD_TO_RELEASE:
         description: 'Upload to release'
@@ -87,7 +87,7 @@ jobs:
     - name: Building kernel
       run: |
         rm -rf KernelSU-Next
-        curl -sL https://raw.githubusercontent.com/galaxybuild-project/tools/refs/heads/main/Scripts/KernelSU-SuSFS.sh | bash
+        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next
         export ARCH=arm64
         export SUBARCH=ARM64
         export KBUILD_BUILD_USER="aliza"
@@ -119,7 +119,7 @@ jobs:
         if [ -e "dtbo.img" ]; then
           cp -f dtbo.img AnyKernel3
         fi
-        name=Tensa-Zangetsu-AOSP-KSUnxt-${{ github.event.inputs.CODENAME }}.zip
+        name=N0lagKernel-Aospnxt-munch-${{ github.event.inputs.CODENAME }}.zip
         cd AnyKernel3
         zip -q -r $name *
         mv $name ../
@@ -144,7 +144,7 @@ jobs:
         if [ -e "dtb.img" ]; then
           cp -f dtb.img SecondAnyKernel/dtb
         fi
-        second_name=Tensa-Zangetsu-HYPER-KSUnxt-${{ github.event.inputs.CODENAME }}.zip
+        second_name=N0lagKernel-Miuinxt-munch-${{ github.event.inputs.CODENAME }}.zip
         cd SecondAnyKernel
         zip -q -r $second_name *
         mv $second_name ../
