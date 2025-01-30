@@ -1,4 +1,4 @@
-name: Kernel Build (nolag) - KSUNEXT 
+name: NOLAG KSUNEXT 
 
 on:
   pull_request:
@@ -90,14 +90,16 @@ jobs:
         curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next
         export ARCH=arm64
         export SUBARCH=ARM64
-        export KBUILD_BUILD_USER="aliza"
+        export KBUILD_BUILD_USER="SenseiiX"
         export KBUILD_BUILD_HOST="Github"
         make O=out vendor/munch_defconfig PATH="${{ steps.tools.outputs.tools-folder }}/clang/bin:$PATH"
-        make O=out CC=clang -j$(nproc --all) PATH="${{ steps.tools.outputs.tools-folder }}/clang/bin:$PATH" CROSS_COMPILE=aarch64-linux-gnu- LLVM=1 LLVM_IAS=1
+        make O=out CC=clang -j$(nproc --all) PATH="${{ steps.tools.outputs.tools-folder }}/clang/bin:$PATH" \
+        CFLAGS="-ffast-math" CXXFLAGS="-ffast-math" \
+        CROSS_COMPILE=aarch64-linux-gnu- LLVM=1 LLVM_IAS=1
         echo "elapsed_time=$(echo "$(date +%s)"-"${{ steps.workspace.outputs.start_time }}" | bc)" >> $GITHUB_OUTPUT
       working-directory: ${{ steps.kernel.outputs.kernel-folder }}
       id: build
-
+      
     - name: AnyKernel3
       if: ${{ success() && github.event.inputs.ANYKERNEL_URL != '' }}
       run: |
@@ -119,7 +121,7 @@ jobs:
         if [ -e "dtbo.img" ]; then
           cp -f dtbo.img AnyKernel3
         fi
-        name=N0lagKernel-Aospnxt-munch-${{ github.event.inputs.CODENAME }}.zip
+        name=AMD-Reborn-AOSPnxt-${{ github.event.inputs.CODENAME }}.zip
         cd AnyKernel3
         zip -q -r $name *
         mv $name ../
@@ -144,7 +146,7 @@ jobs:
         if [ -e "dtb.img" ]; then
           cp -f dtb.img SecondAnyKernel/dtb
         fi
-        second_name=N0lagKernel-Miuinxt-munch-${{ github.event.inputs.CODENAME }}.zip
+        second_name=AMD-Reborn-HYPERnxt-${{ github.event.inputs.CODENAME }}.zip
         cd SecondAnyKernel
         zip -q -r $second_name *
         mv $second_name ../
