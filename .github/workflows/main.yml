@@ -47,7 +47,6 @@ jobs:
     permissions:
       contents: write
     steps:
-
     - name: Display User Inputs
       run: |
         echo "::group::User Environment Variables"
@@ -119,7 +118,7 @@ jobs:
         if [ -e "dtbo.img" ]; then
           cp -f dtbo.img AnyKernel3
         fi
-        name=AMD-Reborn-AOSPnxt-${{ github.event.inputs.CODENAME }}.zip
+        name=AMD-Reborn-AOSPnxt-${{ github.event.inputs.CODENAME }}-$(date +'%Y%m%d-%H%M').zip
         cd AnyKernel3
         zip -q -r $name *
         mv $name ../
@@ -144,7 +143,7 @@ jobs:
         if [ -e "dtb.img" ]; then
           cp -f dtb.img SecondAnyKernel/dtb
         fi
-        second_name=AMD-Reborn-HYPERnxt-${{ github.event.inputs.CODENAME }}.zip
+        second_name=AMD-Reborn-HYPERnxt-${{ github.event.inputs.CODENAME }}-$(date +'%Y%m%d-%H%M').zip
         cd SecondAnyKernel
         zip -q -r $second_name *
         mv $second_name ../
